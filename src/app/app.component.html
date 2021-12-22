@@ -1,20 +1,20 @@
-<div class="flex flex-row">
-  <img
-    src="{{ imageSrc.imageUrl }}"
-    (mouseover)="changeTimerIn()"
-    (mouseout)="changeTimerOut()"
-    onclick="imageSrc.Otherlink"
-    style="width: 50%; height: 50%; border: 5px solid black"
-  />
-  <div class="imgTitle">
-    {{ imageSrc.title }}
-    <span
-      class="dot"
-      [ngClass]="{
-        active: imageSrc.status === 'on',
-        inactive: imageSrc.status === 'off'
-      }"
-    ></span>
-  </div>
-  <div>{{ this.timer }}</div>
+<div class="carousel">
+  <ng-container *ngFor="let slide of this.imageObject; let i = index">
+    <img
+      *ngIf="i === currentSlide && !!slide"
+      [src]="slide?.imageUrl"
+      class="slide"
+      (mouseenter)="toggleImageSlider($event)"
+      (mouseleave)="toggleImageSlider($event)"
+      @carouselAnimation
+    />
+    <div *ngIf="i === currentSlide && !!slide" class="imgTitle">
+      {{ slide?.title }}
+      <p>Carousel is: {{ !!isCaroselRunning ? "Running" : "Paused" }}</p>
+      <span
+        class="dot"
+        [class]="slide?.status === 'on' ? 'active' : 'inactive'"
+      ></span>
+    </div>
+  </ng-container>
 </div>
