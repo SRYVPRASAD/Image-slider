@@ -1,10 +1,10 @@
 <div class="flex flex-row">
   <img
     src="{{ imageSrc.imageUrl }}"
-    (mouseover)="changeTimerIn()"
-    (mouseout)="changeTimerOut()"
-    onclick="imageSrc.Otherlink"
+    (mouseover)="this.pause = false"
+    (mouseout)="this.pause = true"
     style="width: 50%; height: 50%; border: 5px solid black"
+    class="ease-in duration-300"
   />
   <div class="imgTitle">
     {{ imageSrc.title }}
@@ -16,5 +16,5 @@
       }"
     ></span>
   </div>
-  <div>{{ this.timer }}</div>
+  <div>{{ pause }}</div>
 </div>
